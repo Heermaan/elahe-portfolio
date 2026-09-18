@@ -1,0 +1,11 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__cta">Have a project in mind?</p>
+    <a class="site-footer__email" href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <p class="site-footer__links">
+      {%- if site.linkedin != "" %}<a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif -%}
+      {%- if site.youtube != "" %}<a href="{{ site.youtube }}" target="_blank" rel="noopener">YouTube</a>{% endif -%}
+    </p>
+    <p class="site-footer__copy">© {{ site.time | date: "%Y" }} {{ site.title }}</p>
+  </div>
+</footer>

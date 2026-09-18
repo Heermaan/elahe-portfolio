@@ -1,0 +1,34 @@
+# ── Site settings ─────────────────────────────────────────────
+# Safe to edit the values on the right. Keep the quotes.
+title: "Elahe Afroozan"
+tagline: "Motion · Animation · Character Design · Illustration"
+description: "Digital artist with 10+ years in motion graphics, animation, character design, illustration and storyboarding."
+
+email: "elahe.afroozan@gmail.com"
+linkedin: ""            # paste the full LinkedIn URL here, e.g. https://www.linkedin.com/in/....
+youtube: "https://www.youtube.com/@elaheafroozan4114"
+
+showreel: "https://youtu.be/IZJlqanhGVo"      # shown on the home page under "Showreel"
+hero_video: "https://youtu.be/mMKYLvv2NKk"    # looping background at the top of the home page
+
+# ── Work sections (order = menu order) ──────────────────────
+# slug = the folder name inside /work/
+# tile = shape of thumbnails: wide | tall | square
+sections:
+  - { name: "Motion",       slug: "motion",       tile: "wide" }
+  - { name: "Characters",   slug: "characters",   tile: "tall" }
+  - { name: "Illustration", slug: "illustration", tile: "square" }
+  - { name: "3D",           slug: "3d",           tile: "square" }
+
+# ── Technical (don't touch) ───────────────────────────────────
+url: ""
+baseurl: ""
+markdown: kramdown
+permalink: pretty
+exclude:
+  - README.md
+  - HOW-TO-UPDATE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules

@@ -1,0 +1,3 @@
+Put your motion images or videos in this folder.
+Full instructions: HOW-TO-UPDATE.md in the main folder.
+Delete the placeholder-*.svg files when you add real work.

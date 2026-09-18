@@ -1,0 +1,13 @@
+# YouTube videos, per category.
+# Add one line per video, starting with two spaces and a dash, like the example.
+# Videos show up ABOVE the images on that category's page.
+
+motion:
+  - https://youtu.be/IZJlqanhGVo
+  - https://youtu.be/mMKYLvv2NKk
+
+characters:
+
+illustration:
+
+3d:

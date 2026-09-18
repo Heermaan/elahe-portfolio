@@ -1,0 +1,42 @@
+{%- comment -%}
+  Lists every image / video file inside a folder.
+  Usage: {% include gallery.html dir="/work/characters/" tile="tall" %}
+{%- endcomment -%}
+{%- assign dir = include.dir -%}
+{%- assign tile = include.tile | default: "square" -%}
+{%- assign allowed = ".jpg,.jpeg,.png,.gif,.webp,.svg,.mp4,.webm" | split: "," -%}
+{%- assign files = site.static_files | where_exp: "f", "f.path contains dir" | sort: "path" -%}
+{%- assign count = 0 -%}
+<div class="grid grid--{{ tile }}">
+{%- for f in files -%}
+  {%- assign ext = f.extname | downcase -%}
+  {%- unless allowed contains ext %}{% continue %}{% endunless -%}
+  {%- assign count = count | plus: 1 -%}
+  {%- comment -%} caption from filename: "01-red-fox.jpg" -> "Red fox" {%- endcomment -%}
+  {%- assign words = f.basename | replace: "_", " " | replace: "-", " " | split: " " -%}
+  {%- assign first_num = words[0] | plus: 0 -%}
+  {%- if first_num > 0 or words[0] == "0" or words[0] == "00" -%}
+    {%- assign words = words | shift -%}
+  {%- endif -%}
+  {%- assign caption = words | join: " " | strip | capitalize -%}
+  {%- assign src = f.path | relative_url -%}
+  {%- if ext == ".mp4" or ext == ".webm" -%}
+  <figure class="tile tile--video">
+    <a href="{{ src }}" class="tile__link" data-lightbox="video" data-caption="{{ caption }}">
+      <video src="{{ src }}" autoplay muted loop playsinline preload="metadata"></video>
+    </a>
+    {%- if caption != "" %}<figcaption>{{ caption }}</figcaption>{% endif -%}
+  </figure>
+  {%- else -%}
+  <figure class="tile">
+    <a href="{{ src }}" class="tile__link" data-lightbox="image" data-caption="{{ caption }}">
+      <img src="{{ src }}" alt="{{ caption }}" loading="lazy" decoding="async">
+    </a>
+    {%- if caption != "" %}<figcaption>{{ caption }}</figcaption>{% endif -%}
+  </figure>
+  {%- endif -%}
+{%- endfor -%}
+</div>
+{%- if count == 0 -%}
+<p class="empty">Nothing here yet.</p>
+{%- endif -%}

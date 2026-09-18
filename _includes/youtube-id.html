@@ -1,0 +1,7 @@
+{%- comment -%} Turns any YouTube URL into just the video ID. Sets `yt_id`. {%- endcomment -%}
+{%- assign _u = include.url | strip -%}
+{%- if _u contains "v=" -%}
+  {%- assign yt_id = _u | split: "v=" | last | split: "&" | first -%}
+{%- else -%}
+  {%- assign yt_id = _u | split: "/" | last | split: "?" | first -%}
+{%- endif -%}

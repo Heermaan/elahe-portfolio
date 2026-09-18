@@ -1,0 +1,41 @@
+---
+layout: default
+---
+{% include hero.html %}
+
+<section class="page" id="featured">
+  <header class="page__head">
+    <h2>Featured</h2>
+    <p class="page__intro">A few favourites across disciplines.</p>
+  </header>
+  {% include gallery.html dir="/work/featured/" tile="square" %}
+</section>
+
+<section class="page page--tight">
+  <header class="page__head">
+    <h2>Browse by discipline</h2>
+  </header>
+  <div class="cats">
+    {%- for c in site.sections -%}
+    {%- assign dir = "/work/" | append: c.slug | append: "/" -%}
+    {%- assign allowed = ".jpg,.jpeg,.png,.gif,.webp,.svg" | split: "," -%}
+    {%- assign cover = "" -%}
+    {%- assign files = site.static_files | where_exp: "f", "f.path contains dir" | sort: "path" -%}
+    {%- for f in files -%}
+      {%- assign ext = f.extname | downcase -%}
+      {%- if cover == "" and allowed contains ext %}{% assign cover = f.path %}{% endif -%}
+    {%- endfor -%}
+    <a class="cat" href="{{ dir | replace: '/work', '' | relative_url }}">
+      {%- if cover != "" %}<img src="{{ cover | relative_url }}" alt="" loading="lazy">{% else %}<div class="cat__blank"></div>{% endif -%}
+      <span class="cat__name">{{ c.name }}</span>
+    </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+<section class="page" id="showreel">
+  <header class="page__head">
+    <h2>Showreel</h2>
+  </header>
+  {% include youtube.html url=site.showreel title="Showreel" %}
+</section>

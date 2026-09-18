@@ -1,0 +1,27 @@
+{%- comment -%}
+  Home page hero. Uses /assets/hero.mp4 if that file exists (better quality, no YouTube branding),
+  otherwise falls back to the looping YouTube video from _config.yml.
+{%- endcomment -%}
+{%- assign local_hero = site.static_files | where: "path", "/assets/hero.mp4" -%}
+<section class="hero">
+  <div class="hero__media" aria-hidden="true">
+    {%- if local_hero.size > 0 -%}
+    <video src="{{ '/assets/hero.mp4' | relative_url }}" autoplay muted loop playsinline></video>
+    {%- else -%}
+    {%- include youtube-id.html url=site.hero_video -%}
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{ yt_id }}?autoplay=1&mute=1&loop=1&playlist={{ yt_id }}&controls=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1"
+      title="" tabindex="-1"
+      allow="autoplay; encrypted-media"></iframe>
+    {%- endif -%}
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__text">
+    <h1 class="hero__title">{{ site.title }}</h1>
+    <p class="hero__tagline">{{ site.tagline }}</p>
+    <div class="hero__actions">
+      <a class="btn" href="#featured">See the work</a>
+      <a class="btn btn--ghost" href="mailto:{{ site.email }}">Get in touch</a>
+    </div>
+  </div>
+</section>

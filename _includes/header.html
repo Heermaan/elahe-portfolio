@@ -1,0 +1,10 @@
+<header class="site-header">
+  <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <nav class="nav" aria-label="Main">
+    {%- for c in site.sections -%}
+    {%- assign href = "/" | append: c.slug | append: "/" -%}
+    <a href="{{ href | relative_url }}"{% if page.url == href %} aria-current="page"{% endif %}>{{ c.name }}</a>
+    {%- endfor -%}
+    <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+  </nav>
+</header>
