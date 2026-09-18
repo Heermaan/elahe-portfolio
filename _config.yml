@@ -21,8 +21,8 @@ sections:
   - { name: "3D",           slug: "3d",           tile: "square" }
 
 # ── Technical (don't touch) ───────────────────────────────────
-url: ""
-baseurl: ""
+url: "https://heermaan.github.io"
+baseurl: "/elahe-portfolio"   # set back to "" when the custom domain is connected
 markdown: kramdown
 permalink: pretty
 exclude:
