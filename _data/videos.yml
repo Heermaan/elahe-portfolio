@@ -1,10 +1,16 @@
-# YouTube videos, per category.
-# Add one line per video, starting with two spaces and a dash, like the example.
-# Videos show up ABOVE the images on that category's page.
+# YouTube or Vimeo videos, per section.
+# Add one line per video, starting with two spaces and a dash, like the examples.
+# Videos show up ABOVE the images on that section's page.
 
 motion:
   - https://youtu.be/IZJlqanhGVo
   - https://youtu.be/mMKYLvv2NKk
+  - https://vimeo.com/569729826
+  - https://vimeo.com/569727672
+  - https://vimeo.com/569744886
+  - https://vimeo.com/598801538
+  - https://vimeo.com/437424663
+  - https://youtu.be/UPMEDtrIgw8
 
 characters:
 

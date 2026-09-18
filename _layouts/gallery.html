@@ -12,7 +12,7 @@ layout: default
   {%- if videos and videos.size > 0 -%}
   <div class="videos">
     {%- for v in videos -%}
-      {%- include youtube.html url=v title=page.title -%}
+      {%- include video.html url=v title=page.title -%}
     {%- endfor -%}
   </div>
   {%- endif -%}

@@ -1,0 +1,14 @@
+{%- comment -%} Embeds a YouTube or Vimeo link. Usage: {% include video.html url=... title=... %} {%- endcomment -%}
+{%- assign _u = include.url | strip -%}
+{%- if _u contains "vimeo.com" -%}
+  {%- assign vm_id = _u | split: "/" | last | split: "?" | first -%}
+  {%- assign src = "https://player.vimeo.com/video/" | append: vm_id | append: "?dnt=1&title=0&byline=0&portrait=0" -%}
+{%- else -%}
+  {%- include youtube-id.html url=_u -%}
+  {%- assign src = "https://www.youtube-nocookie.com/embed/" | append: yt_id | append: "?rel=0&modestbranding=1" -%}
+{%- endif -%}
+<div class="video-embed">
+  <iframe src="{{ src }}" title="{{ include.title | default: 'Video' }}" loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+    allowfullscreen></iframe>
+</div>

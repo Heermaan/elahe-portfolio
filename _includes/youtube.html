@@ -1,9 +1,0 @@
-{%- include youtube-id.html url=include.url -%}
-<div class="video-embed">
-  <iframe
-    src="https://www.youtube-nocookie.com/embed/{{ yt_id }}?rel=0&modestbranding=1"
-    title="{{ include.title | default: 'Video' }}"
-    loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen></iframe>
-</div>
