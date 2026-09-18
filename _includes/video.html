@@ -1,14 +1,19 @@
-{%- comment -%} Embeds a YouTube or Vimeo link. Usage: {% include video.html url=... title=... %} {%- endcomment -%}
+{%- comment -%} Embeds a YouTube or Vimeo link as a click-to-play poster. Usage: {% include video.html url=... title=... %} {%- endcomment -%}
 {%- assign _u = include.url | strip -%}
 {%- if _u contains "vimeo.com" -%}
   {%- assign vm_id = _u | split: "/" | last | split: "?" | first -%}
-  {%- assign src = "https://player.vimeo.com/video/" | append: vm_id | append: "?dnt=1&title=0&byline=0&portrait=0" -%}
+  {%- assign src = "https://player.vimeo.com/video/" | append: vm_id | append: "?dnt=1&title=0&byline=0&portrait=0&autoplay=1" -%}
+  {%- assign poster = "/assets/video-thumbs/vimeo-" | append: vm_id | append: ".jpg" -%}
 {%- else -%}
   {%- include youtube-id.html url=_u -%}
-  {%- assign src = "https://www.youtube-nocookie.com/embed/" | append: yt_id | append: "?rel=0&modestbranding=1" -%}
+  {%- assign src = "https://www.youtube-nocookie.com/embed/" | append: yt_id | append: "?rel=0&modestbranding=1&autoplay=1" -%}
+  {%- assign poster = "/assets/video-thumbs/yt-" | append: yt_id | append: ".jpg" -%}
 {%- endif -%}
-<div class="video-embed">
-  <iframe src="{{ src }}" title="{{ include.title | default: 'Video' }}" loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-    allowfullscreen></iframe>
+{%- assign has_poster = site.static_files | where: "path", poster | first -%}
+<div class="video-embed" data-src="{{ src }}" data-title="{{ include.title | default: 'Video' }}">
+  <button class="video-embed__play" type="button" aria-label="Play {{ include.title | default: 'video' }}">
+    {%- if has_poster %}<img src="{{ poster | relative_url }}" alt="" loading="lazy" decoding="async">{% endif -%}
+    <span class="video-embed__icon" aria-hidden="true"></span>
+  </button>
+  <noscript><iframe src="{{ src | replace: '&autoplay=1', '' }}" title="{{ include.title | default: 'Video' }}" loading="lazy" allowfullscreen></iframe></noscript>
 </div>

@@ -30,7 +30,7 @@
   {%- else -%}
   <figure class="tile">
     <a href="{{ src }}" class="tile__link" data-lightbox="image" data-caption="{{ caption }}">
-      <img src="{{ src }}" alt="{{ caption }}" loading="lazy" decoding="async">
+      {%- include thumb.html path=f.path alt=caption -%}
     </a>
     {%- if caption != "" %}<figcaption>{{ caption }}</figcaption>{% endif -%}
   </figure>

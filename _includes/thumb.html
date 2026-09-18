@@ -1,0 +1,20 @@
+{%- comment -%}
+  Renders an <img> (wrapped in <picture> when a WebP exists) using the generated
+  thumbnail for a work/ image, falling back to the original if no thumb exists.
+  Usage: {% include thumb.html path=f.path alt=caption %}
+{%- endcomment -%}
+{%- assign _rel = include.path | remove_first: "/work/" -%}
+{%- assign _base = _rel | split: "." | pop | join: "." -%}
+{%- assign _jpg = "/assets/thumbs/" | append: _base | append: ".jpg" -%}
+{%- assign _webp = "/assets/thumbs/" | append: _base | append: ".webp" -%}
+{%- assign _has_jpg = site.static_files | where: "path", _jpg | first -%}
+{%- assign _has_webp = site.static_files | where: "path", _webp | first -%}
+{%- if _has_jpg %}{% assign _src = _jpg %}{% else %}{% assign _src = include.path %}{% endif -%}
+{%- if _has_webp -%}
+<picture>
+  <source srcset="{{ _webp | relative_url }}" type="image/webp">
+  <img src="{{ _src | relative_url }}" alt="{{ include.alt }}" loading="lazy" decoding="async">
+</picture>
+{%- else -%}
+<img src="{{ _src | relative_url }}" alt="{{ include.alt }}" loading="lazy" decoding="async">
+{%- endif -%}

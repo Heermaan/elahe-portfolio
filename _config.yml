@@ -32,3 +32,5 @@ exclude:
   - Gemfile.lock
   - vendor
   - node_modules
+  - scripts
+  - .github

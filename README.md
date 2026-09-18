@@ -24,4 +24,6 @@ Then open http://localhost:4000
 
 ## Deploy
 
-Push to GitHub → Settings → Pages → Deploy from branch `main`, folder `/ (root)`. Add a `CNAME` file with the domain when ready.
+Deployed by `.github/workflows/pages.yml` on every push to `main`. **GitHub → Settings → Pages → Source must be "GitHub Actions"** (not "Deploy from a branch"). Add a `CNAME` file with the domain when ready and set `baseurl: ""` in `_config.yml`.
+
+The workflow runs `scripts/build-thumbs.sh` before Jekyll: it makes 800px JPEG + WebP thumbnails of everything in `work/` (grid tiles use those; the lightbox opens the original) and downloads poster images for the videos in `_data/videos.yml`. Both output folders are git-ignored. Run the script locally before `jekyll serve` if you want the same result (uses `sips` on macOS, ImageMagick elsewhere; WebP only where `cwebp` or ImageMagick exists).

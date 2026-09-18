@@ -58,3 +58,15 @@
   window.addEventListener('scroll', update, { passive: true });
   update();
 })();
+
+// Videos: show a poster image, load the player only when clicked.
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('.video-embed__play');
+  if (!btn) return;
+  var box = btn.closest('.video-embed');
+  var f = document.createElement('iframe');
+  f.src = box.dataset.src; f.title = box.dataset.title || 'Video';
+  f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+  f.allowFullscreen = true;
+  box.innerHTML = ''; box.appendChild(f);
+});
